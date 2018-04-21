@@ -113,8 +113,25 @@ class RGBController extends React.Component {
 
 function updateCanvasRotation(degrees) {
   this.setState({
-    rgb: this.state.rgb,
-    rotation: degrees
+    rotation: degrees,
+    x_scale: this.state.x_scale,
+    y_scale: this.state.y_scale
+  });
+}
+
+function updateCanvasXScale(value) {
+  this.setState({
+    rotation: this.state.rotation,
+    x_scale: value,
+    y_scale: this.state.y_scale
+  });
+}
+
+function updateCanvasYScale(value) {
+  this.setState({
+    rotation: this.state.rotation,
+    x_scale: this.state.x_scale,
+    y_scale: value
   });
 }
 
@@ -122,11 +139,14 @@ class ImageCanvasComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rgb: [],
-      rotation: 0
+      rotation: 0,
+      x_scale: 1,
+      y_scale: 1
     }
 
     updateCanvasRotation = updateCanvasRotation.bind(this);
+    updateCanvasXScale = updateCanvasXScale.bind(this);
+    updateCanvasYScale = updateCanvasYScale.bind(this);
   }
 
   componentDidMount() {
@@ -146,6 +166,7 @@ class ImageCanvasComponent extends React.Component {
       context.save();
       context.clearRect(0, 0, 400, 400);
       context.translate(imageCache.width / 2, imageCache.height / 2);
+      context.scale(imageCanvasState.x_scale, imageCanvasState.y_scale);
       context.rotate(Math.PI / 180 * imageCanvasState.rotation);
 
       context.drawImage(
@@ -173,15 +194,37 @@ class ImageController extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      rotation: 0
+      rotation: 0,
+      x_scale: 0,
+      y_scale: 0
     }
   }
 
   handleChangeOnDegrees = (value) => {
     this.setState({
-      rotation: value
+      rotation: value,
+      x_scale: this.state.x_scale,
+      y_scale: this.state.y_scale
     });
     updateCanvasRotation(value);
+  }
+
+  handleChangeOnXScale = (value) => {
+    this.setState({
+      rotation: this.state.rotation,
+      x_scale: value / 10,
+      y_scale: this.state.y_scale
+    });
+    updateCanvasXScale(value);
+  }
+
+  handleChangeOnYScale = (value) => {
+    this.setState({
+      rotation: this.state.rotation,
+      x_scale: this.state.x_scale,
+      y_scale: value / 10
+    });
+    updateCanvasYScale(value);
   }
 
   render() {
@@ -195,6 +238,24 @@ class ImageController extends React.Component {
               max={360}
               value={this.state.rotation}
               onChange={this.handleChangeOnDegrees}
+            />
+          </div>
+          <div id="x-scale-slider">
+            Scale X | {this.state.x_scale}
+            <Slider
+              min={1}
+              max={10}
+              value={this.state.x_scale * 10}
+              onChange={this.handleChangeOnXScale}
+            />
+          </div>
+          <div id="y-scale-slider">
+            Scale Y | {this.state.y_scale}
+            <Slider
+              min={1}
+              max={10}
+              value={this.state.y_scale * 10}
+              onChange={this.handleChangeOnYScale}
             />
           </div>
         </div>
