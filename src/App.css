@@ -21,6 +21,8 @@ header h2 {
 article div#canvas-holder {
   position: relative;
 
+  height: 400px;
+
   margin-top: 3%;
   margin-bottom: 3%;
 }
@@ -29,6 +31,24 @@ article div#canvas-holder canvas {
   border: 1px solid #1e1e1e;
 
   position: absolute;
+  display: block;
   top: 0;
-  left: 0;
+}
+
+article div#canvas-sliders {
+  position: relative;
+
+  display: block;
+}
+
+article div#canvas-sliders div#sliders div div#red-slider div > div {
+  background-color: rgb(192, 58, 58);
+}
+
+article div#canvas-sliders div#sliders div div#green-slider div > div {
+  background-color: rgb(54, 197, 125);
+}
+
+article div#canvas-sliders div#sliders div div#blue-slider div > div {
+  background-color: rgb(41, 93, 172);
 }
