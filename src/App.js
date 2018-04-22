@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'react-rangeslider';
+import 'bootstrap';
+import $ from 'jquery';
 import 'react-rangeslider/lib/index.css';
 import './App.css';
 
@@ -280,6 +282,9 @@ class App extends Component {
           <div id="canvas-sliders" className="row justify-content-center">
             {<RGBController />}
             {<ImageController />}
+          </div>
+          <div id="change-dp-button-holder" className="row justify-content-center">
+            <button type="button" className="btn btn-success">Change My DP</button>
           </div>
         </article>
       </div>

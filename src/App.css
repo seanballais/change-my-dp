@@ -52,3 +52,8 @@ article div#canvas-sliders div#sliders div div#green-slider div > div {
 article div#canvas-sliders div#sliders div div#blue-slider div > div {
   background-color: rgb(41, 93, 172);
 }
+
+article div#change-dp-button-holder {
+  margin-top: 3%;
+  margin-bottom: 10%;
+}
