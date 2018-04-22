@@ -267,6 +267,30 @@ class ImageController extends React.Component {
 }
 
 class App extends Component {
+  changeDP = (event) => {
+    var bgCanvas = $('canvas#canvas-bg')[0];
+    var pictureCanvas = $('canvas#canvas-picture')[0];
+    var dpCanvas = document.createElement('canvas');
+    dpCanvas.setAttribute('width', 400);
+    dpCanvas.setAttribute('height', 400);
+
+    var dpCanvasContext = dpCanvas.getContext('2d');
+    dpCanvasContext.drawImage(bgCanvas, 0, 0);
+    dpCanvasContext.drawImage(pictureCanvas, 0, 0);
+
+    var newDP = dpCanvas.toDataURL('image/png').substring(22);
+
+    var button = event.target;
+    $(button).prop('disabled', true);
+    $(button).text('Changing my DP...');
+    $.post('http://localhost:5000/change-dp', newDP, function(resp) {
+      resp = JSON.parse(resp);
+      $(button).prop('disabled', false);
+      $(button).text('Change My DP');
+      alert(resp.message);  // Replace this in the future.
+    });
+  }
+
   render() {
     return (
       <div className="container">
@@ -284,7 +308,7 @@ class App extends Component {
             {<ImageController />}
           </div>
           <div id="change-dp-button-holder" className="row justify-content-center">
-            <button type="button" className="btn btn-success">Change My DP</button>
+            <button type="button" onClick={this.changeDP} className="btn btn-success">Change My DP</button>            
           </div>
         </article>
       </div>
