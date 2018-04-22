@@ -283,7 +283,7 @@ class App extends Component {
     var button = event.target;
     $(button).prop('disabled', true);
     $(button).text('Changing my DP...');
-    $.post('http://seanballais.pythonanywhere.com/change-dp', newDP, function(resp) {
+    $.post('https://seanballais.pythonanywhere.com/change-dp', newDP, function(resp) {
       resp = JSON.parse(resp);
       $(button).prop('disabled', false);
       $(button).text('Change My DP');
