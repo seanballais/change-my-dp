@@ -299,6 +299,9 @@ class App extends Component {
           <h2 className="thin-font">by Sean Ballais (<a href="https://twitter.com/seanballais">@seanballais</a>)</h2>
         </header>
         <article className="container">
+          <div id="instructions" className="row justify-content-center">
+            <p class="col-6">Move the sliders and click the "Change My DP" button below to deliberately, and possibly much to my dismay, change my Twitter profile picture. See your changes at <a href="https://twitter.com/seanballais">@seanballais</a>.</p>
+          </div>
           <div id="canvas-holder" className="row justify-content-center">
             {<BGCanvasComponent />}
             {<ImageCanvasComponent />}
@@ -308,9 +311,17 @@ class App extends Component {
             {<ImageController />}
           </div>
           <div id="change-dp-button-holder" className="row justify-content-center">
-            <button type="button" onClick={this.changeDP} className="btn btn-success">Change My DP</button>            
+            <button type="button" onClick={this.changeDP} className="btn btn-success">Change My DP</button>
+          </div>
+          <div id="notes" className="row justify-content-center">
+            <p>Changes may be viewed <a href="https://twitter.com/seanballais">here</a>. Don't forget to follow back!</p>
           </div>
         </article>
+        <footer className="container">
+          <div id="footer-proper">
+            <p>This website is inspired by a similar <a href="https://bp.io/avatar/">website</a> by Ben Porter (<a href="https://twitter.com/eigenbom">@eigenbom</a>). Source code for this <a href="https://github.com/seanballais/change-my-dp">website</a> and the <a href="https://github.com/seanballais/change-my-dp-server">server</a> is available in <a href="https://github.com/seanballais">GitHub</a>.</p>
+          </div>
+        </footer>
       </div>
     );
   }

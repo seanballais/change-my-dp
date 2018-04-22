@@ -18,6 +18,13 @@ header h2 {
   font-size: 1.5em;
 }
 
+article div#instructions {
+  margin-top: 2%;
+  margin-bottom: 2%;
+
+  text-align: center;
+}
+
 article div#canvas-holder {
   position: relative;
 
@@ -55,5 +62,9 @@ article div#canvas-sliders div#sliders div div#blue-slider div > div {
 
 article div#change-dp-button-holder {
   margin-top: 3%;
+  margin-bottom: 1%;
+}
+
+article div#notes {
   margin-bottom: 10%;
 }
