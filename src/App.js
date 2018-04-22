@@ -140,8 +140,8 @@ class ImageCanvasComponent extends React.Component {
     super(props);
     this.state = {
       rotation: 0,
-      x_scale: 1,
-      y_scale: 1
+      x_scale: 10,
+      y_scale: 10
     }
 
     updateCanvasRotation = updateCanvasRotation.bind(this);
@@ -166,7 +166,7 @@ class ImageCanvasComponent extends React.Component {
       context.save();
       context.clearRect(0, 0, 400, 400);
       context.translate(imageCache.width / 2, imageCache.height / 2);
-      context.scale(imageCanvasState.x_scale, imageCanvasState.y_scale);
+      context.scale(imageCanvasState.x_scale / 10, imageCanvasState.y_scale / 10);
       context.rotate(Math.PI / 180 * imageCanvasState.rotation);
 
       context.drawImage(
@@ -195,8 +195,8 @@ class ImageController extends React.Component {
     super(props, context);
     this.state = {
       rotation: 0,
-      x_scale: 0,
-      y_scale: 0
+      x_scale: 10,
+      y_scale: 10
     }
   }
 
@@ -212,7 +212,7 @@ class ImageController extends React.Component {
   handleChangeOnXScale = (value) => {
     this.setState({
       rotation: this.state.rotation,
-      x_scale: value / 10,
+      x_scale: value,
       y_scale: this.state.y_scale
     });
     updateCanvasXScale(value);
@@ -222,7 +222,7 @@ class ImageController extends React.Component {
     this.setState({
       rotation: this.state.rotation,
       x_scale: this.state.x_scale,
-      y_scale: value / 10
+      y_scale: value
     });
     updateCanvasYScale(value);
   }
@@ -241,20 +241,20 @@ class ImageController extends React.Component {
             />
           </div>
           <div id="x-scale-slider">
-            Scale X | {this.state.x_scale}
+            Scale X | {this.state.x_scale / 10}
             <Slider
-              min={1}
-              max={10}
-              value={this.state.x_scale * 10}
+              min={10}
+              max={50}
+              value={this.state.x_scale}
               onChange={this.handleChangeOnXScale}
             />
           </div>
           <div id="y-scale-slider">
-            Scale Y | {this.state.y_scale}
+            Scale Y | {this.state.y_scale / 10}
             <Slider
-              min={1}
-              max={10}
-              value={this.state.y_scale * 10}
+              min={10}
+              max={50}
+              value={this.state.y_scale}
               onChange={this.handleChangeOnYScale}
             />
           </div>
